@@ -22,6 +22,6 @@ urlpatterns = [
     path('',include('dashboard.urls')),
     path('accounts/',include('accounts.urls')),
     path('assignments/',include('assignments.urls')),
-    path('notifications/',include('notification.urls')),
+    path('notifications/',include('notifications.urls')),
 
 ]
