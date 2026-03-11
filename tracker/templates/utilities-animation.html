@@ -1,17 +1,17 @@
-{%load static%}
+
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>SB Admin 2 - Animation Utilities</title>
+<title>SB Admin 2 - Animation Utilities</title>
 
+<<<<<<< HEAD
     <!-- Custom fonts for this template-->
     <link href="{%static 'vendor/fontawesome-free/css/all.min.css'%}" rel="stylesheet" type="text/css">
     <link
@@ -20,17 +20,27 @@
 
     <!-- Custom styles for this template-->
     <link href="{%static 'css/sb-admin-2.min.css'%}" rel="stylesheet">
+=======
+<!-- FontAwesome -->
+<link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,600,700,800,900" rel="stylesheet">
+
+<!-- Main CSS -->
+<link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+>>>>>>> f1292b37bf5797a24b4753a77067a969a5190212
 
 </head>
 
 <body id="page-top">
 
-    <!-- Page Wrapper -->
-    <div id="wrapper">
+<div id="wrapper">
 
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
+<<<<<<< HEAD
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center"  href="{% url 'dashboard'%}">
                 <div class="sidebar-brand-icon rotate-n-15">
@@ -38,25 +48,40 @@
                 </div>
                 <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
             </a>
+=======
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'index' %}">
+<div class="sidebar-brand-icon rotate-n-15">
+<i class="fas fa-laugh-wink"></i>
+</div>
+<div class="sidebar-brand-text mx-3">SB Admin</div>
+</a>
+>>>>>>> f1292b37bf5797a24b4753a77067a969a5190212
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+<hr class="sidebar-divider my-0">
 
+<<<<<<< HEAD
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link"  href="{% url 'dashboard'%}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
+=======
+<li class="nav-item">
+<a class="nav-link" href="{% url 'index' %}">
+<i class="fas fa-fw fa-tachometer-alt"></i>
+<span>Dashboard</span>
+</a>
+</li>
+>>>>>>> f1292b37bf5797a24b4753a77067a969a5190212
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+<hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Interface
-            </div>
+<div class="sidebar-heading">
+Interface
+</div>
 
+<<<<<<< HEAD
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -91,15 +116,23 @@
                     </div>
                 </div>
             </li>
+=======
+<li class="nav-item">
+<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo">
+<i class="fas fa-fw fa-cog"></i>
+<span>Components</span>
+</a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+<div id="collapseTwo" class="collapse">
+<div class="bg-white py-2 collapse-inner rounded">
+>>>>>>> f1292b37bf5797a24b4753a77067a969a5190212
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Addons
-            </div>
+<h6 class="collapse-header">Custom Components:</h6>
 
+<a class="collapse-item" href="#">Buttons</a>
+<a class="collapse-item" href="#">Cards</a>
+
+<<<<<<< HEAD
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
@@ -125,124 +158,42 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
             </li>
+=======
+</div>
+</div>
+</li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+<li class="nav-item active">
 
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
+<a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseUtilities">
+>>>>>>> f1292b37bf5797a24b4753a77067a969a5190212
 
-        </ul>
-        <!-- End of Sidebar -->
+<i class="fas fa-fw fa-wrench"></i>
+<span>Utilities</span>
 
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+</a>
 
-            <!-- Main Content -->
-            <div id="content">
+<div id="collapseUtilities" class="collapse show">
 
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+<div class="bg-white py-2 collapse-inner rounded">
 
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
+<h6 class="collapse-header">Custom Utilities:</h6>
 
-                    <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+<a class="collapse-item" href="#">Colors</a>
 
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
+<a class="collapse-item" href="#">Borders</a>
 
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
+<a class="collapse-item active" href="#">Animations</a>
 
-                        <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li>
+<a class="collapse-item" href="#">Other</a>
 
+</div>
+</div>
+</li>
+
+<hr class="sidebar-divider">
+
+<<<<<<< HEAD
                         <!-- Nav Item - Messages -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
@@ -308,9 +259,20 @@
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                             </div>
                         </li>
+=======
+<div class="sidebar-heading">
+Addons
+</div>
+>>>>>>> f1292b37bf5797a24b4753a77067a969a5190212
 
-                        <div class="topbar-divider d-none d-sm-block"></div>
+<li class="nav-item">
+<a class="nav-link" href="{% url 'charts' %}">
+<i class="fas fa-fw fa-chart-area"></i>
+<span>Charts</span>
+</a>
+</li>
 
+<<<<<<< HEAD
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
@@ -341,146 +303,53 @@
                                 </a>
                             </div>
                         </li>
+=======
+<li class="nav-item">
+<a class="nav-link" href="{% url 'tables' %}">
+<i class="fas fa-fw fa-table"></i>
+<span>Tables</span>
+</a>
+</li>
+>>>>>>> f1292b37bf5797a24b4753a77067a969a5190212
 
-                    </ul>
+<hr class="sidebar-divider d-none d-md-block">
 
-                </nav>
-                <!-- End of Topbar -->
+</ul>
 
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
+<div id="content-wrapper" class="d-flex flex-column">
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-1 text-gray-800">Animation Utilities</h1>
-                    <p class="mb-4">Bootstrap's default utility classes can be found on the official <a
-                            href="https://getbootstrap.com/docs">Bootstrap Documentation</a> page. The custom utilities
-                        below were created to extend this theme past the default utility classes built into Bootstrap's
-                        framework.</p>
+<div id="content">
 
-                    <!-- Content Row -->
-                    <div class="row">
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-                        <!-- Grow In Utility -->
-                        <div class="col-lg-6">
+<ul class="navbar-nav ml-auto">
 
-                            <div class="card position-relative">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Grow In Animation Utilty</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="mb-3">
-                                        <code>.animated--grow-in</code>
-                                    </div>
-                                    <div class="small mb-1">Navbar Dropdown Example:</div>
-                                    <nav class="navbar navbar-expand navbar-light bg-light mb-4">
-                                        <a class="navbar-brand" href="#">Navbar</a>
-                                        <ul class="navbar-nav ml-auto">
-                                            <li class="nav-item dropdown">
-                                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                                                    role="button" data-toggle="dropdown" aria-haspopup="true"
-                                                    aria-expanded="false">
-                                                    Dropdown
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right animated--grow-in"
-                                                    aria-labelledby="navbarDropdown">
-                                                    <a class="dropdown-item" href="#">Action</a>
-                                                    <a class="dropdown-item" href="#">Another action</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#">Something else here</a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                    <p class="mb-0 small">Note: This utility animates the CSS transform property,
-                                        meaning it will override any existing transforms on an element being animated!
-                                        In this theme, the grow in animation is only being used on dropdowns within the
-                                        navbar.</p>
-                                </div>
-                            </div>
+<li class="nav-item dropdown no-arrow">
 
-                        </div>
+<a class="nav-link dropdown-toggle" href="#" id="userDropdown" data-toggle="dropdown">
 
-                        <!-- Fade In Utility -->
-                        <div class="col-lg-6">
+<span class="mr-2 d-none d-lg-inline text-gray-600 small">User</span>
 
-                            <div class="card position-relative">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Fade In Animation Utilty</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="mb-3">
-                                        <code>.animated--fade-in</code>
-                                    </div>
-                                    <div class="small mb-1">Navbar Dropdown Example:</div>
-                                    <nav class="navbar navbar-expand navbar-light bg-light mb-4">
-                                        <a class="navbar-brand" href="#">Navbar</a>
-                                        <ul class="navbar-nav ml-auto">
-                                            <li class="nav-item dropdown">
-                                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                                                    role="button" data-toggle="dropdown" aria-haspopup="true"
-                                                    aria-expanded="false">
-                                                    Dropdown
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right animated--fade-in"
-                                                    aria-labelledby="navbarDropdown">
-                                                    <a class="dropdown-item" href="#">Action</a>
-                                                    <a class="dropdown-item" href="#">Another action</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#">Something else here</a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                    <div class="small mb-1">Dropdown Button Example:</div>
-                                    <div class="dropdown mb-4">
-                                        <button class="btn btn-primary dropdown-toggle" type="button"
-                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">
-                                            Dropdown
-                                        </button>
-                                        <div class="dropdown-menu animated--fade-in"
-                                            aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                    <p class="mb-0 small">Note: This utility animates the CSS opacity property, meaning
-                                        it will override any existing opacity on an element being animated!</p>
-                                </div>
-                            </div>
+<img class="img-profile rounded-circle"
+src="{% static 'img/undraw_profile.svg' %}">
 
-                        </div>
+</a>
 
-                    </div>
+<div class="dropdown-menu dropdown-menu-right shadow">
 
-                </div>
-                <!-- /.container-fluid -->
+<a class="dropdown-item" href="{% url 'login' %}">
 
-            </div>
-            <!-- End of Main Content -->
+<i class="fas fa-sign-in-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
+Login
 
-        </div>
-        <!-- End of Content Wrapper -->
+</a>
 
-    </div>
-    <!-- End of Page Wrapper -->
+<a class="dropdown-item" href="{% url 'register' %}">
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+<i class="fas fa-user-plus fa-sm fa-fw mr-2 text-gray-400"></i>
 
+<<<<<<< HEAD
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -510,7 +379,107 @@
 
     <!-- Custom scripts for all pages-->
    <script src="{% static 'js/sb-admin-2.min.js'%}"></script>
+=======
+Register
+
+</a>
+
+</div>
+</li>
+
+</ul>
+
+</nav>
+
+<div class="container-fluid">
+
+<h1 class="h3 mb-1 text-gray-800">Animation Utilities</h1>
+
+<p class="mb-4">
+Bootstrap animation utilities demonstration.
+</p>
+
+<div class="row">
+
+<div class="col-lg-6">
+
+<div class="card position-relative">
+
+<div class="card-header py-3">
+
+<h6 class="m-0 font-weight-bold text-primary">Grow In Animation</h6>
+
+</div>
+
+<div class="card-body">
+
+<code>.animated--grow-in</code>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-6">
+
+<div class="card position-relative">
+
+<div class="card-header py-3">
+
+<h6 class="m-0 font-weight-bold text-primary">Fade In Animation</h6>
+
+</div>
+
+<div class="card-body">
+
+<code>.animated--fade-in</code>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<footer class="sticky-footer bg-white">
+
+<div class="container my-auto">
+
+<div class="copyright text-center my-auto">
+
+<span>Copyright © Your Website</span>
+
+</div>
+
+</div>
+
+</footer>
+
+</div>
+
+</div>
+
+<a class="scroll-to-top rounded" href="#page-top">
+
+<i class="fas fa-angle-up"></i>
+
+</a>
+
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+<script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+>>>>>>> f1292b37bf5797a24b4753a77067a969a5190212
 
 </body>
-
 </html>
+
