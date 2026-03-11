@@ -23,3 +23,9 @@ def add_assignment(request):
         form = AssignmentForm()
 
     return render(request, 'assignments/add.html', {'form': form})
+
+def complete_assignment(request, id):
+    assignment = Assignment.objects.get(id=id)
+    assignment.completed = True
+    assignment.save()
+    return redirect('assignment_list')

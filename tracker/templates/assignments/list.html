@@ -347,36 +347,36 @@
 
                 </nav>
                 <!-- End of Topbar -->
-                div
-                 <h2>My Assignments</h2>
+                <div>
+                <h2>My Assignments</h2>
 
-<table class="table">
-<tr>
-<th>Subject</th>
-<th>Title</th>
-<th>Deadline</th>
-<th>Status</th>
-</tr>
+                    <table class="table">
+                    <tr>
+                    <th>Subject</th>
+                    <th>Title</th>
+                    <th>Deadline</th>
+                    <th>Status</th>
+                    </tr>
 
-{% for assignment in assignments %}
+                {% for assignment in assignments %}
 
-<tr>
-<td>{{assignment.subject}}</td>
-<td>{{assignment.title}}</td>
-<td>{{assignment.deadline}}</td>
-<td>
-{% if assignment.completed %}
-Completed
-{% else %}
-Pending
-{% endif %}
-</td>
-</tr>
+                     <tr>
+                     <td>{{assignment.subject}}</td>
+                     <td>{{assignment.title}}</td>
+                     <td>{{assignment.deadline}}</td>
+                    <td>
+                {% if assignment.completed %}
+                Completed
+                {% else %}
+                Pending
+                {% endif %}
+                </td>
+                </tr>
 
-{% endfor %}
+                {% endfor %}
 
-</table>
+                </table>
 
-<a href="/assignments/add/">Add Assignment</a>
-
-{% endblock %}
+                <a href="/assignments/add/">Add Assignment</a>
+                <a href="{% url 'complete_assignment' assignment.id %}" class="btn btn-success btn-sm">Complete</a>
+                {% endblock %}
