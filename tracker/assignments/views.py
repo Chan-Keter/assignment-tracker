@@ -42,3 +42,9 @@ def assignment_detail(request, assignment_id):
     }
     
     return render(request, 'assignments/assignment_detail.html', context)
+
+def completed_assignments(request):
+    assignments = Assignment.objects.filter(completed=True)
+    return render(request, 'assignments/completed_assignments.html', {
+        'assignments': assignments
+    })
