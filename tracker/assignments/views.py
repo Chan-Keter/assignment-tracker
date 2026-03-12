@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Assignment
 from .forms import AssignmentForm
 from django.contrib.auth.decorators import login_required
@@ -32,3 +32,13 @@ def complete_assignment(request, id):
 
 def add(request):
     return render(request,'add.html')
+
+def assignment_detail(request, assignment_id):
+    # Fetch the assignment by ID or return 404 if not found
+    assignment = get_object_or_404(Assignment, id=assignment_id)
+    
+    context = {
+        'assignment': assignment
+    }
+    
+    return render(request, 'assignments/assignment_detail.html', context)
