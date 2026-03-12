@@ -16,5 +16,4 @@ def dashboard(request):
     }
 
     return render(request, 'dashboard/index.html', context)
-def tables(request):
-    return render(request,'tables.html')
+
