@@ -5,21 +5,39 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
 
-
 def register_view(request):
 
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
 
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('dashboard')
+        first_name = request.POST.get('first_name', '')
+        last_name = request.POST.get('last_name', '')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        password2 = request.POST.get('password2')
 
-    else:
-        form = UserCreationForm()
+        if password == password2:
 
-    return render(request, 'accounts/register.html', {'form': form})
+            if User.objects.filter(email=email).exists():
+                messages.error(request, "Email already exists")
+                return redirect('register')
+
+            user = User.objects.create_user(
+                username=email,
+                email=email,
+                password=password
+            )
+
+            user.first_name = first_name
+            user.last_name = last_name
+            user.save()
+
+            messages.success(request, "Account created successfully")
+            return redirect('login')
+
+        else:
+            messages.error(request, "Passwords do not match")
+
+    return render(request, 'accounts/register.html')
 
 
 def login_view(request):
@@ -47,29 +65,3 @@ def forgot_password(request):
     return render(request,'accounts/forgot-password.html')
 
 
-
-def register_view(request):
-
-    if request.method == "POST":
-
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
-        email = request.POST['email']
-        password = request.POST['password']
-        password2 = request.POST['password2']
-
-        if password == password2:
-
-            user = User.objects.create_user(
-                username=email,
-                email=email,
-                password=password,
-                first_name=first_name,
-                last_name=last_name
-            )
-
-            user.save()
-
-            return redirect('login')
-
-    return render(request, 'accounts/register.html')

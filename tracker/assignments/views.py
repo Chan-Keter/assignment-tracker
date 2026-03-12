@@ -29,3 +29,6 @@ def complete_assignment(request, id):
     assignment.completed = True
     assignment.save()
     return redirect('assignment_list')
+
+def add(request):
+    return render(request,'add.html')
