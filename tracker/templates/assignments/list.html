@@ -31,6 +31,11 @@
                     {% endif %}
                 </td>
                 <td>
+                    <a href="{% url 'update_assignment' assignment.id %}" class="btn btn-warning btn-sm">
+                        Update
+                    </a>
+                
+                 
                     {% if not assignment.completed %}
                         <a href="{% url 'complete_assignment' assignment.id %}" class="btn btn-success btn-sm">
                             Complete

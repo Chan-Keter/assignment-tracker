@@ -8,4 +8,5 @@ urlpatterns = [
     path('assignment/',views.add,name='assignment'),
     path('assignment/<int:assignment_id>/', views.assignment_detail, name='assignment_detail'),  # for detail page
     path('completed/', views.completed_assignments, name='completed_assignments'),
+    path('assignment/update/<int:pk>/', views.update_assignment, name='update_assignment'),
 ]

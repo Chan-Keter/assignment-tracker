@@ -48,3 +48,16 @@ def completed_assignments(request):
     return render(request, 'assignments/completed_assignments.html', {
         'assignments': assignments
     })
+    
+def update_assignment(request, pk):
+    assignment = get_object_or_404(Assignment, pk=pk)
+
+    if request.method == "POST":
+        form = AssignmentForm(request.POST, instance=assignment)
+        if form.is_valid():
+            form.save()
+            return redirect('assignment_list')   # or dashboard
+    else:
+        form = AssignmentForm(instance=assignment)
+
+    return render(request, 'assignments/update_assignment.html', {'form': form})
