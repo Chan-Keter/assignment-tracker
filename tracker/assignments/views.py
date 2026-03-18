@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Assignment
 from .forms import AssignmentForm
 from django.contrib.auth.decorators import login_required
+from .models import Project
+from .forms import ProjectForm
 
 
 @login_required
@@ -48,3 +50,56 @@ def completed_assignments(request):
     return render(request, 'assignments/completed_assignments.html', {
         'assignments': assignments
     })
+    
+def update_assignment(request, pk):
+    assignment = get_object_or_404(Assignment, pk=pk)
+
+    if request.method == "POST":
+        form = AssignmentForm(request.POST, instance=assignment)
+        if form.is_valid():
+            form.save()
+            return redirect('assignment_list')   # or dashboard
+    else:
+        form = AssignmentForm(instance=assignment)
+
+    return render(request, 'assignments/update_assignment.html', {'form': form})
+
+def project_list(request):
+    if request.method == "POST":
+        project_id = request.POST.get("project_id")
+        progress = request.POST.get("progress")
+
+        project = get_object_or_404(Project, id=project_id, user=request.user)
+        project.progress = int(progress)
+        project.save()
+
+        return redirect('project_list')
+
+    projects = Project.objects.filter(user=request.user)
+    return render(request, 'projects/project_list.html', {'projects': projects})
+
+def create_project(request):
+    if request.method == "POST":
+        form = ProjectForm(request.POST)
+        if form.is_valid():
+            project = form.save(commit=False)
+            project.user = request.user
+            project.save()
+            return redirect('project_list')
+    else:
+        form = ProjectForm()
+
+    return render(request, 'projects/create_project.html', {'form': form})
+
+def update_project(request, pk):
+    project = Project.objects.get(pk=pk)
+
+    if request.method == "POST":
+        form = ProjectForm(request.POST, instance=project)
+        if form.is_valid():
+            form.save()
+            return redirect('project_list')
+    else:
+        form = ProjectForm(instance=project)
+
+    return render(request, 'projects/update_project.html', {'form': form})
