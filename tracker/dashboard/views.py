@@ -7,11 +7,12 @@ from datetime import timedelta
 
 @login_required
 def dashboard(request):
-
+    # ===== BASIC STATS =====
     total = Assignment.objects.filter(user=request.user).count()
     completed = Assignment.objects.filter(user=request.user, completed=True).count()
     pending = Assignment.objects.filter(user=request.user, completed=False).count()
 
+    # ===== ALERTS =====
     now = timezone.now()
     warning_time = now + timedelta(days=2)
 
@@ -30,13 +31,44 @@ def dashboard(request):
 
     alerts_count = near_due.count() + overdue.count()
 
+    # ===== CHART DATA =====
+    today = timezone.now()
+
+    labels = []
+    created_data = []
+    completed_data = []
+
+    for i in range(6, -1, -1):
+        day = today - timedelta(days=i)
+
+        count_created = Assignment.objects.filter(
+            user=request.user,
+            deadline__date=day.date()   # ✅ FIXED (use deadline)
+        ).count()
+
+        count_completed = Assignment.objects.filter(
+            user=request.user,
+            completed=True,
+            deadline__date=day.date()
+        ).count()
+
+        labels.append(day.strftime("%a"))
+        created_data.append(count_created)
+        completed_data.append(count_completed)
+
+    # ===== FINAL CONTEXT =====
     context = {
         'total': total,
         'completed': completed,
         'pending': pending,
+
         'near_due': near_due,
         'overdue': overdue,
-        'alerts_count': alerts_count
+        'alerts_count': alerts_count,
+
+        'labels': labels,
+        'created_data': created_data,
+        'completed_data': completed_data
     }
 
     return render(request, 'dashboard/index.html', context)
@@ -72,3 +104,4 @@ def edit_profile_view(request):
         return redirect('profile')
 
     return render(request, 'dashboard/edit_profile.html', {'user': request.user})
+
