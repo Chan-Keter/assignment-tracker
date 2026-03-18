@@ -4,6 +4,10 @@ from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.contrib import messages
 from datetime import timedelta
+from django.http import HttpResponse
+from django.template.loader import render_to_string
+import pdfkit 
+
 
 @login_required
 def dashboard(request):
@@ -32,27 +36,32 @@ def dashboard(request):
     alerts_count = near_due.count() + overdue.count()
 
     # ===== CHART DATA =====
-    today = timezone.now()
+    today = timezone.now().date()
+
+    # Find Sunday of the current week
+    days_since_sunday = today.weekday() + 1  # Monday=0 -> Sunday=6
+    sunday = today - timedelta(days=days_since_sunday % 7)
 
     labels = []
     created_data = []
     completed_data = []
 
-    for i in range(6, -1, -1):
-        day = today - timedelta(days=i)
+    # Loop from Sunday to Saturday
+    for i in range(7):
+        day = sunday + timedelta(days=i)
+        labels.append(day.strftime("%a"))
 
         count_created = Assignment.objects.filter(
             user=request.user,
-            deadline__date=day.date()   # ✅ FIXED (use deadline)
+            deadline__date=day
         ).count()
 
         count_completed = Assignment.objects.filter(
             user=request.user,
             completed=True,
-            deadline__date=day.date()
+            deadline__date=day
         ).count()
 
-        labels.append(day.strftime("%a"))
         created_data.append(count_created)
         completed_data.append(count_completed)
 
@@ -105,3 +114,49 @@ def edit_profile_view(request):
 
     return render(request, 'dashboard/edit_profile.html', {'user': request.user})
 
+
+@login_required
+def generate_report(request):
+    today = timezone.now().date()
+
+    # Find Sunday of the current week
+    # weekday(): Monday=0, Sunday=6
+    days_since_sunday = today.weekday() + 1  # Monday=0 -> Sunday=6
+    sunday = today - timedelta(days=days_since_sunday % 7)
+
+    labels = []
+    created_data = []
+    completed_data = []
+
+    # Loop from Sunday to Saturday
+    for i in range(7):
+        day = sunday + timedelta(days=i)
+        labels.append(day.strftime("%a"))
+
+        count_created = Assignment.objects.filter(
+            user=request.user,
+            deadline__date=day
+        ).count()
+        count_completed = Assignment.objects.filter(
+            user=request.user,
+            completed=True,
+            deadline__date=day
+        ).count()
+
+        created_data.append(count_created)
+        completed_data.append(count_completed)
+
+    # Zip data for template
+    chart_data = zip(labels, created_data, completed_data)
+
+    html = render_to_string('dashboard/report_template.html', {
+        'chart_data': chart_data,
+        'user': request.user
+    })
+
+    config = pdfkit.configuration(wkhtmltopdf=r"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe")
+    pdf = pdfkit.from_string(html, False, configuration=config)
+
+    response = HttpResponse(pdf, content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="weekly_report.pdf"'
+    return response
