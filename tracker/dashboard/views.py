@@ -9,6 +9,8 @@ from django.template.loader import render_to_string
 import pdfkit 
 
 
+
+
 @login_required
 def dashboard(request):
     # ===== BASIC STATS =====
@@ -117,46 +119,42 @@ def edit_profile_view(request):
 
 @login_required
 def generate_report(request):
-    today = timezone.now().date()
+    # ===== Get assignments =====
+    assignments = Assignment.objects.filter(user=request.user)
 
-    # Find Sunday of the current week
-    # weekday(): Monday=0, Sunday=6
-    days_since_sunday = today.weekday() + 1  # Monday=0 -> Sunday=6
+    # ===== Chart data =====
+    today = timezone.now().date()
+    days_since_sunday = today.weekday() + 1
     sunday = today - timedelta(days=days_since_sunday % 7)
 
     labels = []
     created_data = []
     completed_data = []
 
-    # Loop from Sunday to Saturday
     for i in range(7):
         day = sunday + timedelta(days=i)
         labels.append(day.strftime("%a"))
 
-        count_created = Assignment.objects.filter(
-            user=request.user,
-            deadline__date=day
-        ).count()
-        count_completed = Assignment.objects.filter(
-            user=request.user,
-            completed=True,
-            deadline__date=day
-        ).count()
+        created = assignments.filter(deadline__date=day).count()
+        completed = assignments.filter(completed=True, deadline__date=day).count()
 
-        created_data.append(count_created)
-        completed_data.append(count_completed)
+        created_data.append(created)
+        completed_data.append(completed)
 
-    # Zip data for template
     chart_data = zip(labels, created_data, completed_data)
 
-    html = render_to_string('dashboard/report_template.html', {
+    # ===== Render HTML =====
+    html_content = render_to_string('dashboard/report_template.html', {
+        'assignments': assignments,
         'chart_data': chart_data,
-        'user': request.user
+        'user': request.user,
     })
 
-    config = pdfkit.configuration(wkhtmltopdf=r"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe")
-    pdf = pdfkit.from_string(html, False, configuration=config)
+    # ===== Generate PDF =====
+    config = pdfkit.configuration(wkhtmltopdf='/usr/bin/wkhtmltopdf')
+    pdf = pdfkit.from_string(html_content, False, configuration=config)
 
+    # ===== Return response =====
     response = HttpResponse(pdf, content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename="weekly_report.pdf"'
     return response

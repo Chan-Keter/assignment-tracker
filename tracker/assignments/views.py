@@ -91,15 +91,15 @@ def create_project(request):
 
     return render(request, 'projects/create_project.html', {'form': form})
 
-def update_project(request, pk):
-    project = Project.objects.get(pk=pk)
+def edit_project(request, pk):
+    project = get_object_or_404(Project, pk=pk)
 
     if request.method == "POST":
         form = ProjectForm(request.POST, instance=project)
         if form.is_valid():
             form.save()
-            return redirect('project_list')
+            return redirect('project_list')  # back to list
     else:
         form = ProjectForm(instance=project)
 
-    return render(request, 'projects/update_project.html', {'form': form})
+    return render(request, 'projects/edit_project.html', {'form': form})
