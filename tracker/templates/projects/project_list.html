@@ -2,55 +2,91 @@
 {% block title %}Projects{% endblock %}
 
 {% block content %}
-<h2>My Projects</h2>
+<div style="max-width:800px; margin:auto;">
 
-<a href="{% url 'create_project' %}">Add Project</a>
+    <h2 style="text-align:center; margin-bottom:20px;">My Projects</h2>
 
-{% for project in projects %}
-<div style="margin-bottom:20px; border:1px solid #ccc; padding:15px; border-radius:10px;">
-
-    <h3>{{ project.name }}</h3>
-
-    <!-- GitHub Link -->
-    <a href="{{ project.github_url }}" target="_blank">
-        🔗 View on GitHub
-    </a>
-
-    <!-- Progress Bar -->
-    <div style="background:#eee; width:100%; height:20px; margin-top:10px; border-radius:10px;">
-        <div style="
-            width: {{ project.progress }}%;
-            background: green;
-            height: 100%;
-            border-radius:10px;
-            text-align:center;
-            color:white;
-        ">
-            {{ project.progress }}%
-        </div>
+    <div style="text-align:center; margin-bottom:20px;">
+        <a href="{% url 'create_project' %}" 
+           style="padding:10px 15px; background:#007bff; color:white; text-decoration:none; border-radius:5px;">
+           + Add Project
+        </a>
     </div>
 
-    <!-- UPDATE FORM -->
-    <form method="POST" style="margin-top:10px;">
-        {% csrf_token %}
-        <input type="hidden" name="project_id" value="{{ project.id }}">
+    {% for project in projects %}
+    <div style="
+        margin-bottom:20px; 
+        border:1px solid #ddd; 
+        padding:20px; 
+        border-radius:12px; 
+        box-shadow:0 2px 6px rgba(0,0,0,0.1);
+    ">
 
-        <!-- SLIDER -->
-        <input type="range"
-               name="progress"
-               min="0"
-               max="100"
-               value="{{ project.progress }}"
-               oninput="this.nextElementSibling.value = this.value">
+        <!-- Project Title -->
+        <h3 style="margin-bottom:5px;">{{ project.name }}</h3>
 
-        <!-- SHOW VALUE -->
-        <output>{{ project.progress }}</output>%
+        <!-- GitHub Link -->
+        <a href="{{ project.github_url }}" target="_blank" 
+           style="color:#007bff; text-decoration:none;">
+            🔗 View on GitHub
+        </a>
 
-        <!-- BUTTON -->
-        <br><br>
-        <button type="submit">Update Progress</button>
-    </form>
+        <!-- Progress Bar -->
+        <div style="margin-top:15px;">
+            <div style="
+                background:#eee; 
+                width:100%; 
+                height:22px; 
+                border-radius:10px;
+                overflow:hidden;
+            ">
+                <div style="
+                    width: {{ project.progress }}%;
+                    background: linear-gradient(to right, #28a745, #218838);
+                    height: 100%;
+                    text-align:center;
+                    color:white;
+                    font-size:12px;
+                    line-height:22px;
+                ">
+                    {{ project.progress }}%
+                </div>
+            </div>
+        </div>
+
+        <!-- Update Form -->
+        <form method="POST" style="margin-top:15px;">
+            {% csrf_token %}
+            <input type="hidden" name="project_id" value="{{ project.id }}">
+
+            <!-- Slider -->
+            <div style="display:flex; align-items:center; gap:10px;">
+                <input type="range"
+                       name="progress"
+                       min="0"
+                       max="100"
+                       value="{{ project.progress }}"
+                       style="flex:1;"
+                       oninput="this.nextElementSibling.value = this.value">
+
+                <output style="min-width:40px; text-align:center;">
+                    {{ project.progress }}
+                </output>%
+            </div>
+
+            <!-- Button -->
+            <div style="margin-top:10px;">
+                <button type="submit" 
+                        style="padding:8px 12px; border:none; background:#28a745; color:white; border-radius:5px;">
+                    Update Progress
+                </button>
+            </div>
+        </form>
+
+    </div>
+    {% empty %}
+        <p style="text-align:center;">No projects yet. Start by adding one!</p>
+    {% endfor %}
 
 </div>
-{% endfor %}
 {% endblock %}
